@@ -1,0 +1,31 @@
+.btn-Crear{
+    margin: 0;
+    position: absolute;
+    top: 105%;
+    left: 40%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #0275d8; /* Green */
+    border: none;
+    color: white;
+
+}
+
+.form-control{
+    margin: auto;
+    width: 150px;
+}
+
+
+
+.btn-cancelar{
+    margin: 0;
+    position: absolute;
+    top: 105%;
+    left: 55%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #4b5257; /* Green */
+    border: none;
+    color: white;
+}

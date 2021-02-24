@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tienda Online</title>
+	  <link href="ListadoProductos/css/bootstrap.min.css" rel="stylesheet" type = "text/css">
+	  <link href="ListadoProductos/css/style.css" rel="stylesheet" type = "text/css">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link active" style="display: block;" >Comprar</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/Autenticar/ventas">Ventas realizadas</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="/Autenticar/productos">Administrar productos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="/carrito">Carrito</a><label th:text="${CANTIDAD}"></label>
+				</li>
+			</ul>
+			<img class="logo" alt="Bootstrap Image Preview" src="https://www.pucmm.edu.do/recursos/PublishingImages/Paginas/logos/Logo%20PUCMM%20%28Color%29.png">
+			<h3 class="text-center">
+				Listado de productos
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Producto
+						</th>
+						<th>
+							Precio(RD$)
+						</th>
+						<th>
+							Cantidad
+						</th>
+						<th>
+							Accion
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<!------------------------INICIO PRIMERA FILA------------------------------------------------>
+					<tr th:each="producto : ${Productos}">
+						<form action="/Agregar" method="post">
+							<td >
+								<input th:value="${producto.nombre}" name="nombreProd" contenteditable="false">
+							</td>
+
+							<td >
+								<input th:value="${producto.precio}" name = "precioProd" contenteditable="false">
+							</td>
+							<td >
+								<input type="number" min = "1" max="10" required name = "cantProd">
+							</td>
+							<td>
+								<button type="submit">Agregar Producto(s)</button>
+							</td>
+						</form>
+					</tr>
+
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+    <script src="../ListadoProductos/js/jquery.min.js"></script>
+    <script src="../ListadoProductos/js/bootstrap.min.js"></script>
+    <script src="../ListadoProductos/js/scripts.js"></script>
+  </body>
+</html>

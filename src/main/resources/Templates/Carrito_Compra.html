@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carrito</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="Carrito_Compra/src/css/bootstrap.min.css" rel="stylesheet" type = "text/css">
+    <link href="Carrito_Compra/src/css/style.css" rel="stylesheet" type = "text/css">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+
+			<ul class="nav">
+
+				<li class="nav-item">
+					<a class="nav-link active" href="/">Comprar</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/Autenticar/ventas">Ventas Realizadas</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/Autenticar/productos">Administrar Productos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"  style="display: block">Carrito</a><label th:text="${cantidad}"></label>
+				</li>
+
+			</ul><img alt="Bootstrap Image Preview" src="https://www.pucmm.edu.do/recursos/PublishingImages/Paginas/logos/Logo%20PUCMM%20%28Color%29.png" class = "logo">
+			<h3 class="text-center">
+				Carrito de Compra
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							ID
+						</th>
+
+						<th>
+							Producto
+						</th>
+						<th>
+							Precio(RD$)
+						</th>
+						<th>
+							Cantidad
+						</th>
+						<th>
+							Total(RD$)
+						</th>
+						<th>
+							Accion
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				<!------------------------INICIO PRIMERA FILA------------------------------------------------>
+					<tr th:each="producto : ${miCarrito}">
+						<form action="/eliminar" method="post">
+							<td>
+								<input th:value="${producto.id}" name = "productoID" id = "invisible">
+							</td>
+							<td>
+								<input th:value="${producto.nombre}" name="nombreProducto" contenteditable="false">
+
+							</td>
+							<td th:text="${producto.precio}" contenteditable="false"></td>
+							<td th:text="${producto.quantity}" contenteditable="false"></td>
+							<td th:text="${(producto.precio) * producto.quantity}" contenteditable="false">
+							</td>
+							<td>
+								<button type="submit">
+									Eliminar Producto(s)
+								</button>
+							</td>
+						</form>
+					</tr>
+
+					<!----------------------------------------------FIN PRIMERA FILA-------------------------->
+				</tbody>
+			</table>
+
+			<form action="/ProcesarCompra" method="post">
+				<h4>
+					Ingrese su nombre:
+				</h4>
+				<input type="text" class="form-control" id="exampleInputEmail1" name = "nombreUser" ma style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;);" required>
+
+
+				<button type="submit">
+					Procesar Compra
+				</button>
+
+			</form>
+			<!--USAR UNA <A> PARA PROCESAR LA COMPRA-->
+			<a href="/LimpiarCarro" class="btn btn-primary">
+				Limpiar Carrito
+			</a>
+		</div>
+	</div>
+</div>
+
+    <script src="../Public/Carrito_Compra/src/js/jquery.min.js"></script>
+    <script src="../Public/Carrito_Compra/src/js/bootstrap.min.js"></script>
+    <script src="../Public/Carrito_Compra/src/js/scripts.js"></script>
+  </body>
+</html>

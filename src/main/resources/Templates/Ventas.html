@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ventas</title>
+	  <link href="../Ventas/src/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="../Ventas/src/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link active" href="/"  >Comprar</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" style="display: block" >Ventas realizadas</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="/Autenticar/productos">Administrar productos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="/carrito">Carrito</a> <label th:text="${cantidad}"></label>
+				</li>
+
+			</ul><img alt="Bootstrap Image Preview" src="https://www.pucmm.edu.do/recursos/PublishingImages/Paginas/logos/Logo%20PUCMM%20%28Color%29.png" class="logo">
+			<h3 class="text-center">
+				Listado de Ventas Realizada
+			</h3>
+			<div th:each="venta : ${ventas}">
+				<label th:text="${venta.nombreCliente}  "> </label><label th:text="${venta.fechaCompra}"></label>
+
+				<table class="table" th:each="carritos : ${venta.carrito}" >
+					<thead>
+					<tr>
+						<th>
+							Producto
+						</th>
+						<th>
+							Precio(RD$)
+						</th>
+						<th>
+							Cantidad
+						</th>
+						<th>
+							Total(RD$)
+						</th>
+					</tr>
+					</thead>
+					<tbody>
+
+
+					<tr th:each="producto : ${carritos.listaProductos}">
+						<td>
+							<label th:text="${producto.nombre}"></label>
+						</td>
+						<td>
+							<label th:text="${producto.precio}"></label>
+						</td>
+						<td>
+							<label th:text="${producto.quantity}"></label>
+						</td>
+						<td>
+							<label th:text="${producto.precio * producto.quantity}"></label>
+						</td>
+					</tr>
+
+					</tbody>
+				</table>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

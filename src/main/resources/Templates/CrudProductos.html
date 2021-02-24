@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Crud Productos</title>
+
+    <link href="../CrudProductos/src/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../CrudProductos/src/css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="nav nav-pills2">
+				<li class="nav-item">
+					<a class="nav-link active" href="/">Comprar</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/Autenticar/ventas">Ventas realizadas</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " style="display: block">Administrar Productos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="/carrito">Carrito</a><label th:text="${cantidad}"></label>
+				</li>
+
+			</ul><img class = "logo" alt="Bootstrap Image Preview" src="https://www.pucmm.edu.do/recursos/PublishingImages/Paginas/logos/Logo%20PUCMM%20%28Color%29.png" style="height: 150px">
+			<h3 class="text-center">
+				Crud Productos
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Producto
+						</th>
+						<th>
+							Precio(RD$)
+						</th>
+						<th>
+							Accion
+						</th>
+					</tr>
+				</thead>
+
+
+				<tbody>
+				<form action="/CrearProducto" method="post" id="crearProducto">
+					<tr th:each="producto : ${stock}">
+						<td>
+							<input th:value = "${producto.nombre}" name="stockNombre">
+						</td>
+
+						<td>
+							<input th:value = "${producto.precio}" name="stockPrecio">
+
+						</td>
+
+						<td>
+							<a th:href="'/Modificar/mod/'+${producto.id}"  class="btn btn-primary "  >Modificar</a>
+							<a th:href="'/Modificar/borrar/'+${producto.id}"  class="btn btn-primary ">Eliminar</a>
+
+							<!--<button type="submit" name="modificar" value="Modificar" form="modificarProductos">Modificar</button><button type="submit" name="eliminar" value="Eliminar" form="eliminacion">Eliminar</button>-->
+							<!--<input type="button" name="modificar" value="Modificar"><input type="button" name="eliminar" value="Eliminar">-->
+						</td>
+
+
+					</tr>
+
+					<tr class="table-active">
+						<button type="submit" class="btn btn-success" form="crearProducto">
+							CrearProducto
+						</button>
+				</form>
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="../CrudProductos/src/js/jquery.min.js"></script>
+    <script src="../CrudProductos/src/js/bootstrap.min.js"></script>
+    <script src="../CrudProductos/src/js/scripts.js"></script>
+  </body>
+</html>
